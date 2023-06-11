@@ -1,0 +1,16 @@
+site_name: EnvBoyX documentations
+theme:
+  name: readthedocs
+  language: 'ja'
+
+# ここに書かなくても並ぶが、並び順がアルファベット順になるのでいちいち書いている
+nav:
+  - 'User manual':
+    - '[English]':
+      - 'How to write': 'how_to_write-en.md'
+    - '[Japanese]':
+      - 'ボードへの書き込み': 'how_to_write-jp.md'
+  - 'Documentations [English]':
+    - 'Welcome': 'index.md'
+    - 'API Documentation': 'api.md'
+    - 'Version history': 'history.md'
