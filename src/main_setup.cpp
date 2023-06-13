@@ -16,6 +16,16 @@
 
 extern TimerCall timer;
 
+bool led_on_off = false;
+void flash_led() {
+  if (led_on_off) {
+    digitalWrite(LED_PIN, LED_OFF);
+  } else {
+    digitalWrite(LED_PIN, LED_ON);
+  }
+  led_on_off = !led_on_off;
+}
+
 /**
  * 初期化
  */
@@ -35,18 +45,18 @@ void setup_setupmode() {
 	// Init I2C Serial
 	init_i2c(I2C_SDA, I2C_SCL);
 
-  timer.start();
-
   // buttons
   for (int i = 0; i < BUTTON_COUNT; i++) {
     pinMode(BUTTON_PINS[i], INPUT_PULLUP);
   }
 
+  timer.add(flash_led, "LED_FLASH", 200);
+  timer.start();
   mainlog(F("Setup complete."));
 }
 
 void loop_setupmode() {
-  timer.loop();
- 
   loop_http_setup();
+  timer.loop();
+  yield();
 }

@@ -49,29 +49,20 @@ void setup_normal() {
 
   bool config_ok = read_config();
 
-  sectionlog(F("Setup display"));
-
   if (!config_ok) {
     mainlog("[MAYBE BUG] Config read failed dropping to setup mode");
     remove_configure_flag_file();
     halt("config err", "setup again", "Reset now");
   }
 
+  sectionlog(F("Buttons initialize"));
+  // buttons
+  for (int i = 0; i < BUTTON_COUNT; i++) {
+    pinMode(BUTTON_PINS[i], INPUT_PULLUP);
+  }
+
   sectionlog(F("Start watchdog"));
   setup_watchdog();
-
-  // setupモードに入りやすくするための処理(deprecated)
-  if (config->get(ConfigNames::DISPLAY_RECONFIG) == ConfigValues::DISPLAY_RECONFIG_ON) {
-    sectionlog(F("Reset to reconfig start."));
-    remove_configure_flag_file();
-
-    // 設定済みフラグファイルを再作成
-    create_configure_flag_file();
-
-    sectionlog(F("Reconfigure timeout. continue."));
-  } else {
-    sectionlog(F("Wait for reconfigure skipped by config."));
-  }
 
   // start WiFi
   sectionlog(F("Connecting WiFi."));
@@ -97,6 +88,7 @@ void setup_normal() {
   add_timer_tasks();
   timer.forceRunStasticsOnce();
 
+  digitalWrite(LED_PIN, LED_OFF);
 }
 
 /**
@@ -107,7 +99,11 @@ void loop_normal() {
   watchdog_feed();
 
   // WiFiが繋がってなければ意味がないので接続チェック
+  if (!is_wifi_connected())  {
+    digitalWrite(LED_PIN, LED_ON);
+  }
   make_sure_wifi_connected(false);
+  digitalWrite(LED_PIN, LED_OFF);
 
   // mainlog("WiFi connected. IP=" + get_wifi_ip_addr());
 
@@ -115,6 +111,34 @@ void loop_normal() {
   timer.loop();
 
   http_loop_normal();
+
+  // ボタン入力は大変むずかしい。同時押しを判定する際はなにかのタイムボックスを設けないと
+  // 本当に同時押ししないと入力入らない。
+  // check for buttons
+  bool button_states[] = {false, false, false};
+  for (int i = 0; i < BUTTON_COUNT; i++) {
+    int button_state = digitalRead(BUTTON_PINS[i]);
+    if (button_state == BUTTON_ON) {
+      mainlog("Pressed button is GPIO " + String(BUTTON_PINS[i]));
+      button_states[i] = true;
+    }
+  }
+
+  bool button_pressed = false;
+  String msg = "Buttons pressed:";
+  for (int j = 0; j < BUTTON_COUNT; j++) {
+    if (button_states[j]) {
+      msg = msg + " " + String(j);
+      button_pressed = true;
+    }
+  }
+
+  if (button_pressed) {
+    mainlog(msg);
+    digitalWrite(LED_PIN, LED_ON);
+    delay(200);
+    digitalWrite(LED_PIN, LED_OFF);
+  }
 
   // mainlog("Wait for Next tick.");
   yield();

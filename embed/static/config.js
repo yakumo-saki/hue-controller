@@ -85,7 +85,7 @@ function replaceVersion(replaceName, value) {
  * ページロード時にEBXのバージョン等を置き換える
  */
 async function setPageValues() {
-    const res = await httpGet("/ping");
+    const res = await httpGet("/api/v1/ping");
     console.log(res);
 
     const json = await res.json();

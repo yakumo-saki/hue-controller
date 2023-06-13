@@ -9,3 +9,5 @@ void start_wifi_access_point();
 String get_wifi_ip_addr();
 
 void wifi_store_rssi();
+
+bool is_wifi_connected();

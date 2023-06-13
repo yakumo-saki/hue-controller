@@ -41,6 +41,10 @@ String wl_status_t_to_string(wl_status_t wl_stat) {
 
 }
 
+bool is_wifi_connected() {
+  return (WiFi.status() == WL_CONNECTED);
+}
+
 /**
  * WiFi接続する
  */
