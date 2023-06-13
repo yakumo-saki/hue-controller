@@ -14,7 +14,7 @@
 extern HTTPWEBSERVER server;
 
 void http_handle_stastics() {
-  server.send(200, MimeType::JSON, stasticsJSON);
+  server.send(200, MimeType::JSON, statisticJSON);
 }
 
 void http_api_stastics_setup() {

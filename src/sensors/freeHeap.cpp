@@ -8,9 +8,9 @@
 
 void store_free_heap() {
 #ifdef ESP32
-    sensorValues.freeHeap = ESP.getFreeHeap();
+    statisticValues.freeHeap = ESP.getFreeHeap();
 #endif
 #ifdef ESP8266
-    sensorValues.freeHeap = ESP.getFreeHeap();
+    statisticValues.freeHeap = ESP.getFreeHeap();
 #endif
 }

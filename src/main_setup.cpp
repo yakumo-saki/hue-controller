@@ -37,10 +37,16 @@ void setup_setupmode() {
 
   timer.start();
 
+  // buttons
+  for (int i = 0; i < BUTTON_COUNT; i++) {
+    pinMode(BUTTON_PINS[i], INPUT_PULLUP);
+  }
+
   mainlog(F("Setup complete."));
 }
 
 void loop_setupmode() {
   timer.loop();
+ 
   loop_http_setup();
 }

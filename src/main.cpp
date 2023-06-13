@@ -18,6 +18,10 @@ void setup()
   #else
   Serial.begin(74880);
   #endif
+
+  // LED光らせないと何もI/Fがないのでここで初期化する  
+  pinMode(LED_PIN, OUTPUT);
+  digitalWrite(LED_PIN, LED_ON);
   
   while (!Serial); // Serial起動待ち
   
@@ -37,6 +41,7 @@ void setup()
   mainlog(F("Checking config files"));
   isNormal = has_configured_file();
 
+  // configが正常に読み込めて、フラグファイルがあれば通常モードで起動
   CFG_VALIDATE_RESULT validateResult = has_valid_config_file();
   if (validateResult == CFG_VALIDATE_RESULT::VALID) {
     mainlog(F("Config file is valid."));
@@ -49,6 +54,18 @@ void setup()
     mainlog(F("Config file validation error. dropping to setup mode."));
     isNormal = false;
   }
+
+  // どれかボタンを押していれば強制的にセットアップモードにする
+  // ここで接続されていないピンを指定するとdigitalReadの値が不定になるのでReadmeに書いておく
+  for (int i = 0; i < BUTTON_COUNT; i++) {
+    int buttonState = digitalRead(BUTTON_PINS[i]);
+    if (buttonState == BUTTON_ON) {     // ボタンが押されていたら、ピンの値はLOW
+      mainlog(F("Button is pressed. dropping to setup mode."));
+      mainlog("Pressed button is GPIO " + String(BUTTON_PINS[i]));
+      isNormal = false;
+    }
+  }
+
 
   if (!isNormal) {
     OPERATING_MODE = OPERATING_MODE_SETUP;

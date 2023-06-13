@@ -97,7 +97,6 @@ bool has_configured_file() {
 
   if (!exist) {
     // reconfigure用ファイルがなければセットアップモード
-    // => wait for reconfigure でリセットされたとき。
     cfglog(F("configured_file not found."));
     return false;
   } 

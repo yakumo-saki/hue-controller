@@ -136,6 +136,6 @@ int8_t get_wifi_rssi() {
 }
 
 void wifi_store_rssi() {
-  sensorValues.rssi = get_wifi_rssi();
+  statisticValues.rssi = get_wifi_rssi();
 }
  

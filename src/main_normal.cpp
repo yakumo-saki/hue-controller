@@ -12,7 +12,7 @@
 #include "main_normal_mqtt.h"
 #include "mdns_client.h"
 #include "sensors/freeHeap.h"
-#include "sensors/stastics.h"
+#include "sensors/statistic.h"
 #include "util/watchdog.h"
 #include "util/wifiutil.h"
 #include "network/time_client.h"
@@ -20,20 +20,7 @@
 WiFiClient net;
 
 extern TimerCall timer;
-extern String stasticsJSON;
-
-bool merge_sensor_characters(sensor_characters_t c) {
-  sensorCharacters.temperature = sensorCharacters.temperature || c.temperature;
-  sensorCharacters.humidity = sensorCharacters.humidity || c.humidity;
-  sensorCharacters.pressure = sensorCharacters.pressure || c.pressure;
-  sensorCharacters.lux = sensorCharacters.lux || c.lux;
-  sensorCharacters.luxIr = sensorCharacters.luxIr || c.luxIr;
-  sensorCharacters.co2ppm = sensorCharacters.co2ppm || c.co2ppm;
-  sensorCharacters.co2ppmAccuracy =
-      sensorCharacters.co2ppmAccuracy || c.co2ppmAccuracy;
-
-  return true;
-}
+extern String statisticJSON;
 
 void init_sensors() {
   sectionlog(F("Initializing sensors start."));

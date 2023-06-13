@@ -33,10 +33,17 @@ extern int OPERATING_MODE;
 extern const int I2C_SDA;
 extern const int I2C_SCL;
 
-extern const int MHZ_BAUDRATE;
 extern const byte SSD1306_I2C_ADDR;
 
-extern const int MHZ_RANGE;
+extern int BUTTON_PINS[];
+extern const int BUTTON_COUNT;
+extern const int LED_PIN;
+
+extern int BUTTON_ON;
+extern int BUTTON_OFF;
+extern int LED_ON;
+extern int LED_OFF;
+
 
 // --------------------------------------------------------------------
 // 設定値保存
@@ -47,16 +54,10 @@ extern Config *config;
 // センサー値関連
 // --------------------------------------------------------------------
 
-// センサー値
-extern sensor_values_t sensorValues;
-
-// センサー値のdelta（差分）
-extern sensor_delta_values_t deltaValues;
-
-// センサーが存在しているか否かのフラグ
-extern sensor_characters_t sensorCharacters;
+// 
+extern values_t statisticValues;
 
 // --------------------------------------------------------------------
 // 統計情報
 // --------------------------------------------------------------------
-extern String stasticsJSON;
+extern String statisticJSON;

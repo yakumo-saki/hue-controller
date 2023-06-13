@@ -9,7 +9,7 @@
 
 // 統計情報を取得
 void updateStastics(std::vector<TimerCall::TimerCallTask> &tasks) {
-  const String STAT = "stastics";
+  const String STAT = "statistic";
 
   DynamicJsonDocument doc(500);
   String datetime = getFormattedTime();
@@ -52,5 +52,5 @@ void updateStastics(std::vector<TimerCall::TimerCallTask> &tasks) {
 
   String json = "";
   serializeJson(doc, json);
-  stasticsJSON = json;
+  statisticJSON = json;
 }
