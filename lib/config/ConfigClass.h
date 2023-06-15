@@ -40,6 +40,7 @@ typedef struct config_meta_t {
   ConfigValueType type = ConfigValueType::NotFound;
   std::vector<String> validValues;
   RunningConfigChangeFlags flags;
+  String defaultValue;
 } ConfigMeta;
 
 /**
@@ -57,10 +58,13 @@ class Config {
       return true;
     }
 
+    // 設定値を追加する。外向きには出てない。
+    // 正直、初期化時にしか使わない
     bool addConfig(String key, String value) {
       return configMap.put(key, value, true);
     }
 
+    // 
     bool addConfig(String alertType, String key, String value) {
       String cfgKey = getAlertKey(alertType, key);
       return configMap.put(cfgKey, value, true);
@@ -74,16 +78,17 @@ class Config {
      * 初期値をセットする 
      * ここでセットしていない項目は存在しないものとして扱われる
      */
-    void loadDefaultValue();
+    void loadDefaultValue() {
+      std::vector<String> keys = configMetaMap.getKeys();
+      for (auto itr : keys) {
+          ConfigMeta meta = configMetaMap.get(itr);
+          this->addConfig(meta.key, meta.defaultValue);
+      }
+      
+    }
 
     // メタデータをセットする。メタデータは初期化しても変更しない
     void loadMetadata();
-
-    // メタデータをセットする。（アラート用）
-    void loadMetadataAlert(String alertType);
-
-    // メタデータをセットする。（アラート用のサブルーチン）
-    void _loadMetadataAlert(String alertType, String suffix);
 
     Config() {
       loadMetadata();

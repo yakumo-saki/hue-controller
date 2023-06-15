@@ -9,7 +9,9 @@ const String ConfigNames::PASSWORD = "password";
 const String ConfigNames::MDNS = "mDNS";
 
 /** NTP */
-const String ConfigNames::NTP = "ntp"; // v47
-const String ConfigNames::NTP_ADDRESS = "ntpAddress"; // v47
-const String ConfigNames::NTP_TIMEZONE = "ntpTimezone";            // v47
+const String ConfigNames::NTP = "ntp";
+const String ConfigNames::NTP_ADDRESS = "ntpAddress";
+const String ConfigNames::NTP_TIMEZONE = "ntpTimezone";
+
+const String ConfigNames::HUE_BRIDGE_IP = "hueBridgeIp";
 

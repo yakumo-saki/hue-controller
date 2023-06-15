@@ -6,6 +6,8 @@
 .vscode/ipch
 .vscode
 
+build
+
 # embed is auto generated directory.
 include/embed/**
 

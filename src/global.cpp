@@ -42,6 +42,7 @@ extern const int I2C_SDA = 5;
 // ESP8266 SCL
 extern const int I2C_SCL = 4;
 
+// ここらへんで警告がでるが無視でよい。 initialized and declared 'extern'
 extern int BUTTON_PINS[] = {13, 12, 14};
 extern const int BUTTON_COUNT = sizeof(BUTTON_PINS) / sizeof(int);
 extern const int LED_PIN = 2;

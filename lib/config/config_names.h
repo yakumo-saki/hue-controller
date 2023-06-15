@@ -21,7 +21,11 @@ class ConfigNames {
     static const String PASSWORD;
     static const String MDNS;
 
-    static const String NTP;                    // v47
-    static const String NTP_ADDRESS;            // v47
-    static const String NTP_TIMEZONE;           // v47
+    static const String NTP;
+    static const String NTP_ADDRESS;
+    static const String NTP_TIMEZONE;
+
+    static const String HUE_BRIDGE_IP;
+
 };
+

@@ -20,6 +20,7 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::SETTING_ID;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::BLOCKED;
+    meta.defaultValue = "";
     this->addMeta(meta);
   }
   {
@@ -27,6 +28,7 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::SSID;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ; // v46 BLOCKED to REBOOT_REQ
+    meta.defaultValue = "";
     this->addMeta(meta);
   }
   {
@@ -34,6 +36,7 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::PASSWORD;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ; // v46 BLOCKED to REBOOT_REQ
+    meta.defaultValue = "";
     this->addMeta(meta);
   }
   {
@@ -41,28 +44,41 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::MDNS;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::MDNS_RESTART_REQ;
+    meta.defaultValue = "espmdns";
     this->addMeta(meta);
   }
-  { // v47
+  { 
     ConfigMeta meta;
     meta.key = ConfigNames::NTP;
     meta.type = ConfigValueType::Choise;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
     meta.validValues = std::vector<String> {ConfigValues::NTP_ON, ConfigValues::NTP_OFF};
+    meta.defaultValue = ConfigValues::NTP_OFF;
     this->addMeta(meta);
   }
-  { // v47
+  { 
     ConfigMeta meta;
     meta.key = ConfigNames::NTP_ADDRESS;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+    meta.defaultValue = "";
     this->addMeta(meta);
   }
-  { // v47
+  { 
     ConfigMeta meta;
     meta.key = ConfigNames::NTP_TIMEZONE;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+    meta.defaultValue = "JST-9";
     this->addMeta(meta);
   }
+
+  { 
+    ConfigMeta meta;
+    meta.key = ConfigNames::HUE_BRIDGE_IP;
+    meta.type = ConfigValueType::String;
+    meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+    this->addMeta(meta);
+  }
+
 }

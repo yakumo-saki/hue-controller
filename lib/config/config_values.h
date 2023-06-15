@@ -13,6 +13,7 @@ class ConfigValues {
 
     static const String SETTING_ID;
 
-    static const String NTP_ON; // v47
-    static const String NTP_OFF; // v47
+    static const String NTP_ON;
+    static const String NTP_OFF;
+
 };
