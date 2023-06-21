@@ -27,5 +27,14 @@ class ConfigNames {
 
     static const String HUE_BRIDGE_IP;
 
-};
+    // NEED Prefix or suffix
+    static const String HUE_PREFIX;
 
+    static const String HUE_RED;
+    static const String HUE_GREEN;
+    static const String HUE_BLUE;
+    static const String HUE_BRIGHTNESS;
+    static const String HUE_SATURATION;
+    static const String HUE_POWER;
+
+};

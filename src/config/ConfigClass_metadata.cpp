@@ -1,11 +1,13 @@
 #include <Arduino.h>
 #include <unordered_map>
 
+#include "global.h"
+
 #include "ConfigClass.h"
 
 #include "log.h"
-#include "config_names.h"
-#include "config_values.h"
+#include "config/config_names.h"
+#include "config/config_values.h"
 
 /** 
  * Configのメタデータをセットする 
@@ -79,6 +81,30 @@ void Config::loadMetadata() {
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
     this->addMeta(meta);
+  }
+
+
+  // hue configs
+  std::vector<String> hueConfigNames = std::vector {ConfigNames::HUE_RED, ConfigNames::HUE_GREEN, ConfigNames::HUE_BLUE,
+                                    ConfigNames::HUE_BRIGHTNESS, ConfigNames::HUE_SATURATION, ConfigNames::HUE_POWER};
+
+  for (int i = 0; i < BUTTON_COUNT; i++) { 
+    {
+    ConfigMeta meta;
+    meta.key = ConfigNames::HUE_POWER;
+    meta.type = ConfigValueType::Choise;
+    meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+    this->addMeta(meta);
+    }
+
+    // hue0ColorRed 
+    for (int j = 0; j < hueConfigNames.size(); j++) {
+      ConfigMeta meta;
+      meta.key = ConfigNames::HUE_PREFIX + String(i) + hueConfigNames[j];
+      meta.type = ConfigValueType::Integer;
+      meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+      this->addMeta(meta);
+    }
   }
 
 }

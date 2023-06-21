@@ -5,7 +5,7 @@
 #include "log.h"
 #include "halt.h"
 #include "global.h"
-#include "config/config.h"
+#include "configUtil/config.h"
 
 /**
  * config済みフラグファイルを作成する

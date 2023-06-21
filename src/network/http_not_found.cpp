@@ -1,8 +1,6 @@
 #include <Arduino.h>
 #include <ArduinoJson.h>
 
-#include "config/config.h"
-
 #include "global.h"
 
 #include "network/http_utils.h"

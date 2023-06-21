@@ -5,7 +5,7 @@
 
 #include "log.h"
 #include "global.h"
-#include "config/config.h"
+#include "configUtil/config.h"
 #include "main_setup.h"
 #include "main_normal.h"
 

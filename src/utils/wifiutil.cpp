@@ -13,8 +13,8 @@
 #include "global.h"
 #include "util/watchdog.h"
 
-#include "ConfigClass.h"
-#include "config/config.h"
+#include "config/ConfigClass.h"
+// #include "config/config.h"
 
 std::vector<long> rssiArray;
 

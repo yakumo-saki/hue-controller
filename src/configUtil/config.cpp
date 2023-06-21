@@ -8,8 +8,8 @@
 #include "structs.h"
 #include "utils.h"
 
-#include "ConfigClass.h"
-#include "config_names.h"
+#include "config/ConfigClass.h"
+#include "config/config_names.h"
 
 const unsigned int CONF_JSON_SIZE = 4000;
 extern const String CFG_VERSION_INVALID = "INVALID";

@@ -8,7 +8,7 @@
 
 #include "log.h"
 #include "global.h"
-#include "config/config.h"
+#include "configUtil/config.h"
 #include "http_setup.h"
 #include "util/wifiutil.h"
 #include "i2c.h"

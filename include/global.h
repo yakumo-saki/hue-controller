@@ -3,9 +3,9 @@
 
 #include "global_MimeType.h"
 
-#include "config_values.h"
-#include "config_names.h"
-#include "ConfigClass.h"
+#include "config/config_values.h"
+#include "config/config_names.h"
+#include "config/ConfigClass.h"
 
 #include "structs.h"
 
@@ -43,7 +43,6 @@ extern int BUTTON_ON;
 extern int BUTTON_OFF;
 extern int LED_ON;
 extern int LED_OFF;
-
 
 // --------------------------------------------------------------------
 // 設定値保存

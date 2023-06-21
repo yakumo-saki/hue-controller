@@ -11,8 +11,8 @@
 #include "log.h"
 
 #include "global.h"
-#include "config/config.h"
-#include "ConfigClass.h"
+// #include "config/config.h"
+#include "config/ConfigClass.h"
 
 bool start_mdns(String name) {
 

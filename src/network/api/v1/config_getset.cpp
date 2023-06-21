@@ -5,8 +5,8 @@
 #include "halt.h"
 #include "log.h"
 #include "global.h"
-#include "config/config.h"
-#include "ConfigClass.h"
+// #include "config/config.h"
+#include "config/ConfigClass.h"
 #include "utils.h"
 
 #include "mdns_client.h"

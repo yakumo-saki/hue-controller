@@ -2,7 +2,7 @@
 #include <ArduinoJson.h>
 #include "structs.h"
 #include "TimerCall.h"
-#include "ConfigClass.h"
+#include "config/ConfigClass.h"
 
 
 // --------------------------------------------------------------------

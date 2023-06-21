@@ -3,9 +3,9 @@
 #include <ArduinoJson.h>
 #include <LittleFS.h>
 
-#include "config_names.h"
-#include "config_values.h"
-#include "ConfigClass.h"
+#include "config/config_names.h"
+#include "config/config_values.h"
+#include "config/ConfigClass.h"
 
 extern const String CFG_VERSION_INVALID;
 

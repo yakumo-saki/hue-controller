@@ -4,7 +4,7 @@
 
 #include "log.h"
 #include "global.h"
-#include "config/config.h"
+#include "configUtil/config.h"
 
 /**
  * デバッグ用 ファイル一覧の表示

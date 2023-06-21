@@ -3,8 +3,8 @@
 #include <TimerCall.h>
 
 #include "halt.h"
-#include "config/config.h"
-#include "ConfigClass.h"
+#include "configUtil/config.h"
+#include "config/ConfigClass.h"
 #include "global.h"
 #include "http_normal.h"
 #include "i2c.h"
