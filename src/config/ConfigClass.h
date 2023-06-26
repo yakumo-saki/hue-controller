@@ -151,21 +151,26 @@ class Config {
     ConfigSetResult set(String key, String value) {
       // debuglog("[Config] key=" + key + " value=" + value);
       bool keyExist = checkKeyExist("set", key);
-      if (!keyExist) return ConfigSetResult::NO_KEY;
+      if (!keyExist) {
+        cfglog("No such key for set:" + key + " " + value);
+        return ConfigSetResult::NO_KEY;
+      }
 
       value.trim();
       
       if (validate(key, value)) {
         bool setOK = configMap.set(key, value);
         if (!setOK) {
+          cfglog("Validate OK but config.set NG:" + key + " " + value);
           return ConfigSetResult::OTHER_ERROR;
         }
         return ConfigSetResult::OK;
       } else {
-        cfglog("INVALID VALUE KEY=" + key + " VALUE=" + value);
+        cfglog("Validation error KEY=" + key + " VALUE=" + value);
         return ConfigSetResult::INVALID_VALUE;
       }
 
+      cfglog("Other error:" + key + " " + value);
       return ConfigSetResult::OTHER_ERROR;
     }
 
@@ -174,14 +179,20 @@ class Config {
     bool validate(String key, String value) {
       ConfigMeta meta = configMetaMap.get(key);
       bool ret = false;
+
       if (meta.type == ConfigValueType::Choise) {
+        // debuglog("validate type=choise");
         ret = vectorStringContains(meta.validValues, value);
+        // debuglog("validate choise type " + key + " " + value);
       } else if (meta.type == ConfigValueType::Integer) {
+        // debuglog("validate type=int");
         int dummy = value.toInt(); // 変な文字列が来ている場合0が返る
         ret = (String(dummy) == value); // +10 とか書かれるとアウトだけれども妥協
       } else if (meta.type == ConfigValueType::String) {
+        // debuglog("validate type=string");
         ret = true;
       } else if (meta.type == ConfigValueType::Double) {
+        // debuglog("validate type=double");
         // double dummy = value.toDouble();
         ret = true;
       } else {

@@ -23,7 +23,7 @@ extern const String minorVer = "0";  // Bugfix
 extern const String ver_long = " Ver." + ver + "." + minorVer;
 
 // Setting version (version number when settings changed)
-extern const String SETTING_ID = "HUE-CTRL-CFG.v1";
+extern const String SETTING_ID = "HUE-CTRL-CFG.v1a";
 
 // EnvBoyX Ver.53.0
 extern const String product_long = product + " " + (DEBUG_BUILD ? " Dev." + ver + "." + minorVer : ver_long);
@@ -43,9 +43,9 @@ extern const int I2C_SDA = 5;
 extern const int I2C_SCL = 4;
 
 // ここらへんで警告がでるが無視でよい。 initialized and declared 'extern'
-extern int BUTTON_PINS[] = {13, 12, 14};
-extern const int BUTTON_COUNT = sizeof(BUTTON_PINS) / sizeof(int);
-extern const int LED_PIN = 2;
+extern unsigned int BUTTON_PINS[] = {13, 12, 14};
+extern const unsigned int BUTTON_COUNT = sizeof(BUTTON_PINS) / sizeof(int);
+extern const unsigned int LED_PIN = 2;
 
 extern int BUTTON_ON = LOW;
 extern int BUTTON_OFF = HIGH;

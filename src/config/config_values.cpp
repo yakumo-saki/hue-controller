@@ -6,6 +6,8 @@
 const String ConfigValues::settings = "/settings.json";
 const String ConfigValues::configured_file = "/config_ok.txt";
 
-const String ConfigValues::NTP_ON = "yes";
-const String ConfigValues::NTP_OFF = "no";
+const String ConfigValues::FLAG_YES = "yes";
+const String ConfigValues::FLAG_NO = "no";
 
+const String ConfigValues::FLAG_ON = "on";
+const String ConfigValues::FLAG_OFF = "off";

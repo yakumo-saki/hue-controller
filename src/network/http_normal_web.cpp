@@ -11,7 +11,7 @@
 #include "network/http_not_found.h"
 #include "network/stastics_api.h"
 #include "network/goto_setup_api.h"
-#include "network/api/basic_api.h"
+#include "network/api/v1/ping.h"
 #include "network/api/v1/config.h"
 #include "network/api/v1/getdata.h"
 
@@ -27,7 +27,7 @@ void http_setup_normal() {
   http_api_gotosetup_setup();
   http_api_stastics_setup();
 
-  http_api_basic_setup();
+  http_api_ping_setup();
   // http_api_getdata_setup();
   http_api_config_setup();
 

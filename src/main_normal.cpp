@@ -57,7 +57,7 @@ void setup_normal() {
 
   sectionlog(F("Buttons initialize"));
   // buttons
-  for (int i = 0; i < BUTTON_COUNT; i++) {
+  for (unsigned int i = 0; i < BUTTON_COUNT; i++) {
     pinMode(BUTTON_PINS[i], INPUT_PULLUP);
   }
 
@@ -116,7 +116,7 @@ void loop_normal() {
   // 本当に同時押ししないと入力入らない。
   // check for buttons
   bool button_states[] = {false, false, false};
-  for (int i = 0; i < BUTTON_COUNT; i++) {
+  for (unsigned int i = 0; i < BUTTON_COUNT; i++) {
     int button_state = digitalRead(BUTTON_PINS[i]);
     if (button_state == BUTTON_ON) {
       mainlog("Pressed button is GPIO " + String(BUTTON_PINS[i]));
@@ -126,7 +126,7 @@ void loop_normal() {
 
   bool button_pressed = false;
   String msg = "Buttons pressed:";
-  for (int j = 0; j < BUTTON_COUNT; j++) {
+  for (unsigned int j = 0; j < BUTTON_COUNT; j++) {
     if (button_states[j]) {
       msg = msg + " " + String(j);
       button_pressed = true;

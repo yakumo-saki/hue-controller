@@ -54,8 +54,8 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::NTP;
     meta.type = ConfigValueType::Choise;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
-    meta.validValues = std::vector<String> {ConfigValues::NTP_ON, ConfigValues::NTP_OFF};
-    meta.defaultValue = ConfigValues::NTP_OFF;
+    meta.validValues = std::vector<String> {ConfigValues::FLAG_YES, ConfigValues::FLAG_NO};
+    meta.defaultValue = ConfigValues::FLAG_NO;
     this->addMeta(meta);
   }
   { 
@@ -80,30 +80,45 @@ void Config::loadMetadata() {
     meta.key = ConfigNames::HUE_BRIDGE_IP;
     meta.type = ConfigValueType::String;
     meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
+    meta.defaultValue = "";
     this->addMeta(meta);
   }
 
 
   // hue configs
   std::vector<String> hueConfigNames = std::vector {ConfigNames::HUE_RED, ConfigNames::HUE_GREEN, ConfigNames::HUE_BLUE,
-                                    ConfigNames::HUE_BRIGHTNESS, ConfigNames::HUE_SATURATION, ConfigNames::HUE_POWER};
+                                    ConfigNames::HUE_BRIGHTNESS, ConfigNames::HUE_SATURATION};
 
-  for (int i = 0; i < BUTTON_COUNT; i++) { 
+  for (unsigned int i = 0; i < BUTTON_COUNT; i++) { 
     {
-    ConfigMeta meta;
-    meta.key = ConfigNames::HUE_POWER;
-    meta.type = ConfigValueType::Choise;
-    meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
-    this->addMeta(meta);
+      ConfigMeta me;
+      me.key = ConfigNames::HUE_PREFIX + String(i) + ConfigNames::HUE_POWER;
+      me.type = ConfigValueType::Choise;
+      me.flags = RunningConfigChangeFlags::REBOOT_REQ;
+      me.validValues = std::vector<String> {ConfigValues::FLAG_ON, ConfigValues::FLAG_OFF};
+      me.defaultValue = ConfigValues::FLAG_ON;
+      this->addMeta(me);
     }
 
     // hue0ColorRed 
-    for (int j = 0; j < hueConfigNames.size(); j++) {
-      ConfigMeta meta;
-      meta.key = ConfigNames::HUE_PREFIX + String(i) + hueConfigNames[j];
-      meta.type = ConfigValueType::Integer;
-      meta.flags = RunningConfigChangeFlags::REBOOT_REQ;
-      this->addMeta(meta);
+    for (unsigned int j = 0; j < hueConfigNames.size(); j++) {
+      ConfigMeta met;
+      met.key = ConfigNames::HUE_PREFIX + String(i) + hueConfigNames[j];
+      met.type = ConfigValueType::Integer;
+      met.flags = RunningConfigChangeFlags::REBOOT_REQ;
+
+      if (hueConfigNames[j].indexOf("Color") > 0) {
+        // button1 255,0,0 button2 0,255,0 button3 0,0,255
+        if (i == j) {
+          met.defaultValue = "255";
+        } else {
+          met.defaultValue = "0";
+        }
+      } else {
+        // saturation, brightness are always default 255
+        met.defaultValue = "255";
+      }
+      this->addMeta(met);
     }
   }
 

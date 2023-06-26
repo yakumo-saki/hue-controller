@@ -1,7 +1,7 @@
 "use strict";
 
 const DEBUG_MODE = false;
-const DEBUG_API_HOST = "10.1.0.110"; // デバッグ時、APIを投げる先
+const DEBUG_API_HOST = "10.1.0.165"; // デバッグ時、APIを投げる先
 
 const CONTENT_JSON = "application/json";
 const CONTENT_TEXT = "text/plain";
@@ -127,8 +127,9 @@ function setConfigValuesToPage(configMap) {
                 console.log(
                     `radio button name=${k} value=${v} is not found on document.`
                 );
+            } else {
+                radio.checked = true;
             }
-            radio.checked = true;
         } else {
             // input type=text,password,number
             el.value = v;

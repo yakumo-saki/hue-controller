@@ -7,7 +7,7 @@
 #include "global.h"
 
 #include "network/webserver.h"
-#include "network/api/basic_api.h"
+#include "network/api/v1/ping.h"
 #include "network/api/api_util.h"
 #include "network/http_utils.h"
 

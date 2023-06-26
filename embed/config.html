@@ -23,7 +23,9 @@
         <p>誤ってセットアップモードに移行した場合は一度設定を保存して再起動すると通常モードに移行します。</p>
     </div>
 
-    <a href="/update">ファームウェアアップデータ</a>
+    <div>
+    <a href="/update">ファームウェアアップデータ(not yet)</a>
+    </div>
 
     <form method='post'>
         <br>
@@ -43,7 +45,7 @@
         <fieldset>
             <legend>時刻関連設定</legend>
             <strong>NTPサーバー設定</strong><br>
-            NTPサーバーを使用しない場合、時刻関係の機能は動作しません。<br>
+            現時点では時刻が正確になっても特に意味はありません<br>
             <label>
                 <input type='radio' name='ntp' value='no' id='ntp__no'>
                 使用しない
@@ -64,6 +66,79 @@
             <br>
 
         </fieldset>
+
+        <fieldset>
+            <legend>Philips Hue設定</legend>
+
+            <strong>HUEブリッジのIPアドレス</strong><br>
+            <input type='text' name='hueBridgeIp' placeholder='Hue Bridge IP Address' id='hueBridgeIp'><br>
+            <br>
+
+            <fieldset>
+                <legend>ボタン0を押したときの動作</legend>
+                <label>
+                    <input type='radio' name='hue0Power' value='on' id='hue0Power__on'>
+                    ON
+                </label>
+                <label>
+                    <input type='radio' name='hue0Power' value='off' id='hue0Power__off'>
+                    OFF
+                </label><br>
+    
+                <strong>電球の色 (0-255)</strong><br>
+                R<input type="number" max="255" name="hue0ColorRed" id="hue0ColorRed" maxlength="3" /><br>
+                G<input type="number" max="255" name="hue0ColorGreen" id="hue0ColorGreen" maxlength="3" /><br>
+                B<input type="number" max="255" name="hue0ColorBlue" id="hue0ColorBlue" maxlength="3"/><br>
+                <br>
+                <strong>電球の明るさ (0-255)</strong><br>
+                <label>明るさ：<input type="number" max="255" name="hue0Brightness" id="hue0Brightness" maxlength="3" /></label><br>
+                <label>彩度：<input type="number" max="255" name="hue0Saturation" id="hue0Saturation" maxlength="3" /><label>
+            </fieldset>
+
+            <fieldset>
+                <legend>ボタン1を押したときの動作</legend>
+                <label>
+                    <input type='radio' name='hue1Power' value='on' id='hue1Power__on'>
+                    ON
+                </label>
+                <label>
+                    <input type='radio' name='hue1Power' value='off' id='hue1Power__off'>
+                    OFF
+                </label><br>
+    
+                <strong>電球の色 (0-255)</strong><br>
+                R<input type="number" max="255" name="hue1ColorRed" id="hue1ColorRed" maxlength="3" /><br>
+                G<input type="number" max="255" name="hue1ColorGreen" id="hue1ColorGreen" maxlength="3" /><br>
+                B<input type="number" max="255" name="hue1ColorBlue" id="hue1ColorBlue" maxlength="3"/><br>
+                <br>
+                <strong>電球の明るさ (0-255)</strong><br>
+                <label>明るさ：<input type="number" max="255" name="hue1Brightness" id="hue1Brightness" maxlength="3" /></label><br>
+                <label>彩度：<input type="number" max="255" name="hue1Saturation" id="hue1Saturation" maxlength="3" /><label>
+            </fieldset>
+
+            <fieldset>
+                <legend>ボタン2を押したときの動作</legend>
+                <label>
+                    <input type='radio' name='hue2Power' value='on' id='hue2Power__on'>
+                    ON
+                </label>
+                <label>
+                    <input type='radio' name='hue2Power' value='off' id='hue2Power__off'>
+                    OFF
+                </label><br>
+    
+                <strong>電球の色 (0-255)</strong><br>
+                R<input type="number" max="255" name="hue2ColorRed" id="hue2ColorRed" maxlength="3" /><br>
+                G<input type="number" max="255" name="hue2ColorGreen" id="hue2ColorGreen" maxlength="3" /><br>
+                B<input type="number" max="255" name="hue2ColorBlue" id="hue2ColorBlue" maxlength="3"/><br>
+                <br>
+                <strong>電球の明るさ (0-255)</strong><br>
+                <label>明るさ：<input type="number" max="255" name="hue2Brightness" id="hue2Brightness" maxlength="3" /></label><br>
+                <label>彩度：<input type="number" max="255" name="hue2Saturation" id="hue2Saturation" maxlength="3" /><label>
+            </fieldset>
+
+        </fieldset>
+
 
         <br> <input type='button' id="submit" value='設定する'><br>
     </form>

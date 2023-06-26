@@ -46,7 +46,7 @@ void setup_setupmode() {
 	init_i2c(I2C_SDA, I2C_SCL);
 
   // buttons
-  for (int i = 0; i < BUTTON_COUNT; i++) {
+  for (unsigned int i = 0; i < BUTTON_COUNT; i++) {
     pinMode(BUTTON_PINS[i], INPUT_PULLUP);
   }
 

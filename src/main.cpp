@@ -57,7 +57,7 @@ void setup()
 
   // どれかボタンを押していれば強制的にセットアップモードにする
   // ここで接続されていないピンを指定するとdigitalReadの値が不定になるのでReadmeに書いておく
-  for (int i = 0; i < BUTTON_COUNT; i++) {
+  for (unsigned int i = 0; i < BUTTON_COUNT; i++) {
     int buttonState = digitalRead(BUTTON_PINS[i]);
     if (buttonState == BUTTON_ON) {     // ボタンが押されていたら、ピンの値はLOW
       mainlog(F("Button is pressed. dropping to setup mode."));

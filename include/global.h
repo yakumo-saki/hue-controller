@@ -35,9 +35,9 @@ extern const int I2C_SCL;
 
 extern const byte SSD1306_I2C_ADDR;
 
-extern int BUTTON_PINS[];
-extern const int BUTTON_COUNT;
-extern const int LED_PIN;
+extern unsigned int BUTTON_PINS[];
+extern const unsigned int BUTTON_COUNT;
+extern const unsigned int LED_PIN;
 
 extern int BUTTON_ON;
 extern int BUTTON_OFF;

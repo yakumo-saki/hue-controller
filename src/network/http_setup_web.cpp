@@ -9,7 +9,7 @@
 
 #include "network/webserver.h"
 #include "network/http_not_found.h"
-#include "network/api/basic_api.h"
+#include "network/api/v1/ping.h"
 #include "network/api/v1/display.h"
 #include "network/api/v1/config.h"
 #include "network/api/v1/getdata.h"
@@ -23,7 +23,7 @@ void setup_http_setup() {
   httplog("HTTP web server initializing");
   
   http_not_found_setup();
-  http_api_basic_setup();
+  http_api_ping_setup();
   http_api_config_setup();
 
   http_web_config_setup();
